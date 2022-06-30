@@ -50,6 +50,7 @@ const deleteSubmissionByName = (array, name) => {
   });
   array.splice(index, 1);
 };
+
 deleteSubmissionByName(submissions, "Jill");
 console.log(submissions);
 
@@ -65,7 +66,7 @@ console.log(submissions);
 // splice(start, delete, replace)
 
 const findSubmissionByName = (array, name) => {
-  return array.filter((student) => {
+  return array.find((student) => {
     return student.name === name;
   });
 };
@@ -134,3 +135,16 @@ console.log(countElements(["a", "a", "b", "a", "c", "a", "b", "a", "d", "a"]));
 // indexOf (d) = 0
 // indexOf (a) = 1 the first instance, index of ALWAYS 1. Since that statement does not return true when the function hits the second 'a' of the string it does not add to new array
 // indexOf (b) = 2
+
+const countElements2 = (array) => {
+  const newObject = {};
+  array.forEach((letter) => {
+    if (newObject[letter] === undefined) {
+      newObject[letter] = 1;
+    } else {
+      newObject[letter]++;
+    }
+  });
+  return newObject;
+};
+console.log(countElements2(["a", "a", "b", "a", "c", "a", "b", "a", "d", "a"]));
