@@ -118,20 +118,19 @@ const createRange = (start, end) => {
 console.log(createRange(2, 8));
 
 const countElements = (array) => {
-  let newArray = [...new Set(array)];
+  let newArray = array.filter(
+    (element, indexOfElement, self) => self.indexOf(element) === indexOfElement
+  );
   let newObject = {};
   for (let letter of newArray) {
-    let counter = 0;
-    for (let i = 0; i < array.length; i++) {
-      if (letter == array[i]) {
-        counter++;
-      }
-    }
-    newObject[letter] = counter;
+    let count = array.filter((item) => item === letter);
+    newObject[letter] = count.length;
   }
   return newObject;
 };
-console.log(countElements(["a", "b", "a", "c", "a", "b"]));
 
-//solution found online working with Matt Wong.
-//could be written with .filter() or a .forEach() to loop through each part of the array to count it. [...new Set(array)] finds the unique elements in the array.
+console.log(countElements(["a", "a", "b", "a", "c", "a", "b", "a", "d", "a"]));
+
+// indexOf (d) = 0
+// indexOf (a) = 1 the first instance, index of ALWAYS 1. Since that statement does not return true when the function hits the second 'a' of the string it does not add to new array
+// indexOf (b) = 2
